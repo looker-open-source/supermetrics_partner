@@ -90,6 +90,7 @@ view: paid_channel_mix {
   measure: sum_clicks {
     type: sum
     sql: ${clicks} ;;
+    drill_fields: [detail*]
   }
 
   dimension: impressions {
@@ -100,6 +101,7 @@ view: paid_channel_mix {
   measure: sum_impressions {
     type: sum
     sql: ${impressions} ;;
+    drill_fields: [detail*]
   }
 
   dimension: cost {
@@ -111,6 +113,7 @@ view: paid_channel_mix {
     type: sum
     sql: ${cost} ;;
     value_format: "\"€\"0"
+    drill_fields: [detail*]
   }
 
   dimension: conversions {
@@ -122,6 +125,7 @@ view: paid_channel_mix {
     type: sum
     sql: ${conversions} ;;
     value_format: "#,##0"
+    drill_fields: [detail*]
   }
 
 
@@ -136,6 +140,7 @@ view: paid_channel_mix {
     type: number
     sql: ${sum_clicks}/NULLIF( ${sum_impressions},0) ;;
     value_format: "0.00%;(0.00%)"
+    drill_fields: [detail*]
   }
 
   dimension: CPC {
@@ -149,6 +154,7 @@ view: paid_channel_mix {
     type: number
     sql: ${sum_cost}/NULLIF(${sum_clicks},0) ;;
     value_format: "\"€\"0"
+    drill_fields: [detail*]
   }
 
   dimension: conversion_rate {
@@ -161,18 +167,21 @@ view: paid_channel_mix {
     type: number
     sql: ${sum_conversions}/NULLIF(${sum_clicks},0) ;;
     value_format: "0.00%;(0.00%)"
+    drill_fields: [detail*]
   }
 
   dimension: cost_per_conversion {
     type: number
     sql: ${cost}/NULLIF(${conversions},0) ;;
     value_format: "\"€\"0"
+    drill_fields: [detail*]
   }
 
   measure: avg_cost_per_conversion {
     type: number
     sql: ${sum_cost}/NULLIF(${sum_conversions},0) ;;
     value_format: "\"€\"0"
+    drill_fields: [detail*]
   }
 
   set: detail {
